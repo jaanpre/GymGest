@@ -22,5 +22,4 @@ public class Gimnasio {
 		this.direccion = direccion;
 	}
 	
-	
 }
