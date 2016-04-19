@@ -6,6 +6,8 @@ public class Cliente {
 	String nombre;
 	String direccion;
 	String telefono;
+	
+	
 	public String getDni() {
 		return dni;
 	}

@@ -3,6 +3,7 @@
 import fabricas.fabricaPalaGamaAlta;
 import fabricas.fabricaPalaGamaBaja;
 import fabricas.fabricaPalaGamaMedia;
+import fabricas.fabricaPalaNinyo;
 import fabricas.fabricaPalas;
 
 public class gymGest {
@@ -70,11 +71,18 @@ public class gymGest {
 	
 	public static void main(String args[]){
 		
+<<<<<<< HEAD
 		
 		palaNinyo pn = new palaNinyo();
 		palaGamaBaja baja = new palaGamaBaja();
 		palaGamaMedia media = new palaGamaMedia();
 		palaGamaAlta alta = new palaGamaAlta();
+=======
+//		palaNinyo pn = new palaNinyo();
+//		palaGamaBaja baja = new palaGamaBaja();
+//		palaGamaMedia media = new palaGamaMedia();
+//		palaGamaAlta alta = new palaGamaAlta();
+>>>>>>> origin/master
 		
 //		pn.codigoDePala();
 //		baja.codigoDePala();
@@ -85,11 +93,15 @@ public class gymGest {
 		fabricaPalaGamaBaja fpgb = new fabricaPalaGamaBaja();
 		fabricaPalaGamaMedia fpgm = new fabricaPalaGamaMedia();
 		fabricaPalaGamaAlta fpga = new fabricaPalaGamaAlta();
+		fabricaPalaNinyo fpn = new fabricaPalaNinyo();	
 		
 		//
 		fabricaPalas.crearFabricaPalas(fpgb);
 		fabricaPalas.crearFabricaPalas(fpgm);
 		fabricaPalas.crearFabricaPalas(fpga);
+		fabricaPalas.crearFabricaPalas(fpn);
+		
+		
 	}
 
 }
