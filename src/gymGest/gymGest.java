@@ -1,26 +1,34 @@
 ﻿package gymGest;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import fabricas.fabricaPalaGamaAlta;
 import fabricas.fabricaPalaGamaBaja;
 import fabricas.fabricaPalaGamaMedia;
 import fabricas.fabricaPalaNinyo;
 import fabricas.fabricaPalas;
+import interfaces.palaPadel;
 
 public class gymGest {
 	private List<Cliente> clientes;
 	private List<Empleado> empleados;
 	
-	
-
 	//singleton
 	private static gymGest INSTANCE = new gymGest();
+	
+	//Para systemload...
+	fabricaPalaGamaBaja fpgb = new fabricaPalaGamaBaja();
+	fabricaPalaGamaMedia fpgm = new fabricaPalaGamaMedia();
+	fabricaPalaGamaAlta fpga = new fabricaPalaGamaAlta();
+	fabricaPalaNinyo fpn = new fabricaPalaNinyo();	
 
 	public gymGest(){
 		this.clientes = new ArrayList<Cliente>();
 		this.empleados = new ArrayList<Empleado>();
 	}
 
-	public void addCliente(Cliente cliente){
+	public boolean addCliente(Cliente cliente){
 		return clientes.add(cliente);
 	}
 
@@ -44,7 +52,7 @@ public class gymGest {
 		}
 		return null;
 	}
-	public void addEmpleado(Empleado empleado){
+	public boolean addEmpleado(Empleado empleado){
 		return empleados.add(empleado);
 	}
 
@@ -69,37 +77,53 @@ public class gymGest {
 		return null;
 	}
 	
+	public void palaCliente(Cliente cli, String gama){
+		
+		switch(gama){
+		case "baja":
+		palaPadel pb = fabricaPalas.crearFabricaPalas(fpgb);
+		cli.setPa(pb);
+		break;
+		case "media":
+		palaPadel pm = fabricaPalas.crearFabricaPalas(fpgm);
+		cli.setPa(pm);
+		break;
+		case "alta":
+		palaPadel pa = fabricaPalas.crearFabricaPalas(fpga);
+		cli.setPa(pa);
+		break;
+		case "niño":
+		palaPadel pn = fabricaPalas.crearFabricaPalas(fpn);
+		cli.setPa(pn);
+		break;
+		}
+	}
+	
+	
+	
+	
 	public static void main(String args[]){
 		
-<<<<<<< HEAD
+		Cliente cli = new Cliente();
+		cli.setDni("29209777");
+		cli.setNombre("Nacho");
 		
-		palaNinyo pn = new palaNinyo();
-		palaGamaBaja baja = new palaGamaBaja();
-		palaGamaMedia media = new palaGamaMedia();
-		palaGamaAlta alta = new palaGamaAlta();
-=======
-//		palaNinyo pn = new palaNinyo();
-//		palaGamaBaja baja = new palaGamaBaja();
-//		palaGamaMedia media = new palaGamaMedia();
-//		palaGamaAlta alta = new palaGamaAlta();
->>>>>>> origin/master
+		Cliente cli2 = new Cliente();
+		cli.setDni("29209778");
+		cli.setNombre("Jav");
 		
-//		pn.codigoDePala();
-//		baja.codigoDePala();
-//		media.codigoDePala();
-//		alta.codigoDePala();
+		gymGest gg = new gymGest();
+		gg.clientes.add(cli);
+		gg.clientes.add(cli2);
 		
-		// Creo las fábricas
-		fabricaPalaGamaBaja fpgb = new fabricaPalaGamaBaja();
-		fabricaPalaGamaMedia fpgm = new fabricaPalaGamaMedia();
-		fabricaPalaGamaAlta fpga = new fabricaPalaGamaAlta();
-		fabricaPalaNinyo fpn = new fabricaPalaNinyo();	
+		gg.palaCliente(cli, "niño");
+		gg.palaCliente(cli2, "alta");
 		
-		//
-		fabricaPalas.crearFabricaPalas(fpgb);
-		fabricaPalas.crearFabricaPalas(fpgm);
-		fabricaPalas.crearFabricaPalas(fpga);
-		fabricaPalas.crearFabricaPalas(fpn);
+		cli.getPa();
+		cli2.getPa();
+		
+		
+		
 		
 		
 	}

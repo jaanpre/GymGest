@@ -1,12 +1,15 @@
 package gymGest;
 
+import interfaces.palaPadel;
+
 public class Cliente {
 	
 	String dni;
 	String nombre;
 	String direccion;
 	String telefono;
-	
+	palaPadel pa; 	// utilizamos la interfaz que más tardes se 
+					// llenará con la pala de la gama adecuada
 	
 	public String getDni() {
 		return dni;
@@ -32,6 +35,13 @@ public class Cliente {
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
+	public palaPadel getPa() {
+		return pa;
+	}
+	public void setPa(palaPadel pa) {
+		this.pa = pa;
+	}
+	
 	
 	
 
