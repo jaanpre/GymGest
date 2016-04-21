@@ -1,5 +1,7 @@
 package gymGest;
 
+import java.util.List;
+
 public class Instalacion {
 	
 	private String nombre;
@@ -20,8 +22,8 @@ public class Instalacion {
 		this.nombre = nombre;
 	}
 
-	}
-	public int getPrecioAlquiler() {
+
+	public double getPrecioAlquiler() {
 		return precioAlquiler;
 	}
 	public void setPrecioAlquiler(int precioAlquiler) {

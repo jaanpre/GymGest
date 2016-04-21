@@ -1,5 +1,6 @@
 ﻿package gymGest;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -119,6 +120,15 @@ public class gymGest {
 		
 		cli.getPa();
 		cli2.getPa();
+
+		LocalDateTime now = LocalDateTime.now();
+		LocalDateTime later = (LocalDateTime.now()).withYear(2017);
+		Entrada e = new Entrada(now);
+		Salida s = new Salida(later);
+		Asistencia asis = new Asistencia(e,s);
+		cli.addAsisCliente(asis);
+
+
 		
 		
 		

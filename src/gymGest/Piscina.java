@@ -1,5 +1,7 @@
 package gymGest;
 
+import java.util.List;
+
 public class Piscina extends Instalacion{
 	
 	private int longitud; 

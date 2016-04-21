@@ -2,15 +2,34 @@ package gymGest;
 
 import interfaces.palaPadel;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Cliente {
 	
 	String dni;
 	String nombre;
 	String direccion;
 	String telefono;
-	palaPadel pa; 	// utilizamos la interfaz que más tardes se 
-					// llenará con la pala de la gama adecuada
-	
+	palaPadel pa;
+	public List<Asistencia>  asisCliente = new ArrayList<Asistencia>();
+
+	public List<Asistencia> getAsisCliente() {
+		return asisCliente;
+	}
+
+	public void setAsisCliente(List<Asistencia> asisCliente) {
+		this.asisCliente = asisCliente;
+	}
+
+	public void addAsisCliente(Asistencia asis){
+		asisCliente.add(asis);
+	}
+
+
+
+
+
 	public String getDni() {
 		return dni;
 	}
@@ -41,8 +60,8 @@ public class Cliente {
 	public void setPa(palaPadel pa) {
 		this.pa = pa;
 	}
-	
-	
-	
+
+
+
 
 }
