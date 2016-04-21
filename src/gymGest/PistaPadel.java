@@ -1,5 +1,8 @@
 package gymGest;
 
+
+import java.util.List;
+
 public class PistaPadel extends Instalacion {
 
 	private String material;
