@@ -1,6 +1,6 @@
 package interfaces;
 
-public interface palaPadel {
+public interface PalaPadel {
 
 	public void codigoDePala();
 	public int generarCodigo();

@@ -1,17 +1,17 @@
 package fabricas;
 
-import interfaces.palaDePadel;
-import interfaces.palaPadel;
+import interfaces.PalaDePadel;
+import interfaces.PalaPadel;
 
 public class fabricaPalas {
 	
-	public static palaPadel crearFabricaPalas(palaDePadel factory){
+	public static PalaPadel crearFabricaPalas(PalaDePadel factory){
 		
-		palaPadel objetoPala = factory.crearPala();
+		PalaPadel objetoPala = factory.crearPala();
 		objetoPala.codigoDePala();
 		return objetoPala;
 		
-		// Cambio: era void, he añadido que devuelva un objeto palaPadel
+		// Cambio: era void, he añadido que devuelva un objeto PalaPadel
 	
 	}
 

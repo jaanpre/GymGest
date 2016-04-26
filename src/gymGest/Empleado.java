@@ -2,9 +2,15 @@ package gymGest;
 
 public class Empleado {
 	
-	String dni;
-	String nombre;
-	int sueldo = 1000;
+	private String dni;
+	private String nombre;
+	private int sueldo;
+
+	public Empleado (String dni, String nombre, int sueldo){
+		this.dni=dni;
+		this.nombre=nombre;
+		this.sueldo=sueldo;
+	}
 	
 	public String getDni() {
 		return dni;

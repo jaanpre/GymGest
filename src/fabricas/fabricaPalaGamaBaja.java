@@ -1,14 +1,14 @@
 package fabricas;
 
-import gymGest.palaGamaBaja;
-import interfaces.palaDePadel;
-import interfaces.palaPadel;
+import gymGest.PalaGamaBaja;
+import interfaces.PalaPadel;
+import interfaces.PalaDePadel;
 
-public class fabricaPalaGamaBaja implements palaDePadel{
+public class fabricaPalaGamaBaja implements PalaDePadel {
 
 	@Override
-	public palaPadel crearPala() {
-		palaGamaBaja pgm = new palaGamaBaja();
+	public PalaPadel crearPala() {
+		PalaGamaBaja pgm = new PalaGamaBaja();
 		pgm.generarCodigo();
 		return pgm;
 	}	

@@ -1,7 +1,7 @@
 package interfaces;
 
-public interface palaDePadel {
+public interface PalaDePadel {
 
-	public palaPadel crearPala();
+	public PalaPadel crearPala();
 	
 }

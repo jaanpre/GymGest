@@ -1,8 +1,8 @@
 package gymGest;
 
-import interfaces.palaPadel;
+import interfaces.PalaPadel;
 
-public class palaGamaAlta implements palaPadel{
+public class PalaGamaAlta implements PalaPadel {
 	
 	private int codigo;
 

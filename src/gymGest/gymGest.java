@@ -9,14 +9,14 @@ import fabricas.fabricaPalaGamaBaja;
 import fabricas.fabricaPalaGamaMedia;
 import fabricas.fabricaPalaNinyo;
 import fabricas.fabricaPalas;
-import interfaces.palaPadel;
+import interfaces.PalaPadel;
 
-public class gymGest {
+public class GymGest {
 	private List<Cliente> clientes;
 	private List<Empleado> empleados;
 	
 	//singleton
-	private static gymGest INSTANCE = new gymGest();
+	private static GymGest INSTANCE = new GymGest();
 	
 	//Para systemload...
 	fabricaPalaGamaBaja fpgb = new fabricaPalaGamaBaja();
@@ -24,7 +24,7 @@ public class gymGest {
 	fabricaPalaGamaAlta fpga = new fabricaPalaGamaAlta();
 	fabricaPalaNinyo fpn = new fabricaPalaNinyo();	
 
-	public gymGest(){
+	public GymGest(){
 		this.clientes = new ArrayList<Cliente>();
 		this.empleados = new ArrayList<Empleado>();
 	}
@@ -82,19 +82,19 @@ public class gymGest {
 		
 		switch(gama){
 		case "baja":
-		palaPadel pb = fabricaPalas.crearFabricaPalas(fpgb);
+		PalaPadel pb = fabricaPalas.crearFabricaPalas(fpgb);
 		cli.setPa(pb);
 		break;
 		case "media":
-		palaPadel pm = fabricaPalas.crearFabricaPalas(fpgm);
+		PalaPadel pm = fabricaPalas.crearFabricaPalas(fpgm);
 		cli.setPa(pm);
 		break;
 		case "alta":
-		palaPadel pa = fabricaPalas.crearFabricaPalas(fpga);
+		PalaPadel pa = fabricaPalas.crearFabricaPalas(fpga);
 		cli.setPa(pa);
 		break;
 		case "niño":
-		palaPadel pn = fabricaPalas.crearFabricaPalas(fpn);
+		PalaPadel pn = fabricaPalas.crearFabricaPalas(fpn);
 		cli.setPa(pn);
 		break;
 		}
@@ -111,7 +111,7 @@ public class gymGest {
 		cli.setDni("29209778");
 		cli.setNombre("Jav");
 		
-		gymGest gg = new gymGest();
+		GymGest gg = new GymGest();
 		gg.clientes.add(cli);
 		gg.clientes.add(cli2);
 		
