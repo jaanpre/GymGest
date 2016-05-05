@@ -11,12 +11,12 @@ import fabricas.fabricaPalaNinyo;
 import fabricas.fabricaPalas;
 import interfaces.palaPadel;
 
-public class gymGest {
+public class GymGest {
 	private List<Cliente> clientes;
 	private List<Empleado> empleados;
 	
 	//singleton
-	private static gymGest INSTANCE = new gymGest();
+	private static GymGest INSTANCE = new GymGest();
 	
 	//Para systemload...
 	fabricaPalaGamaBaja fpgb = new fabricaPalaGamaBaja();
@@ -24,7 +24,7 @@ public class gymGest {
 	fabricaPalaGamaAlta fpga = new fabricaPalaGamaAlta();
 	fabricaPalaNinyo fpn = new fabricaPalaNinyo();	
 
-	public gymGest(){
+	public GymGest(){
 		this.clientes = new ArrayList<Cliente>();
 		this.empleados = new ArrayList<Empleado>();
 	}
@@ -111,7 +111,7 @@ public class gymGest {
 		cli.setDni("29209778");
 		cli.setNombre("Jav");
 		
-		gymGest gg = new gymGest();
+		GymGest gg = new GymGest();
 		gg.clientes.add(cli);
 		gg.clientes.add(cli2);
 		

@@ -2,7 +2,7 @@ package gymGest;
 
 import interfaces.palaPadel;
 
-public class palaNinyo implements palaPadel{
+public class PalaNinyo implements palaPadel{
 	
 	private int codigo;
 
