@@ -1,6 +1,6 @@
 package fabricas;
 
-import gymGest.palaGamaBaja;
+import gymGest.PalaGamaBaja;
 import interfaces.palaDePadel;
 import interfaces.palaPadel;
 
@@ -8,7 +8,7 @@ public class fabricaPalaGamaBaja implements palaDePadel{
 
 	@Override
 	public palaPadel crearPala() {
-		palaGamaBaja pgm = new palaGamaBaja();
+		PalaGamaBaja pgm = new PalaGamaBaja();
 		pgm.generarCodigo();
 		return pgm;
 	}	

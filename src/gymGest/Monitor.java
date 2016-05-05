@@ -5,7 +5,11 @@ public class Monitor extends Empleado{
 	boolean monitorNatacion;
 	boolean monitorPadel;
 	boolean monitorSala;
-	
+
+	public Monitor(String dni, String nombre, int sueldo) {
+		super(dni, nombre, sueldo);
+	}
+
 	public int getSueldo() {
 		return super.getSueldo()+150;
 	}
@@ -34,6 +38,5 @@ public class Monitor extends Empleado{
 		this.monitorSala = monitorSala;
 	}
 
-	
 	
 }

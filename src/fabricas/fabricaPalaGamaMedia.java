@@ -1,6 +1,6 @@
 package fabricas;
 
-import gymGest.palaGamaMedia;
+import gymGest.PalaGamaMedia;
 import interfaces.palaDePadel;
 import interfaces.palaPadel;
 
@@ -8,7 +8,7 @@ public class fabricaPalaGamaMedia implements palaDePadel {
 
 	@Override
 	public palaPadel crearPala() {
-		palaGamaMedia pgm = new palaGamaMedia();
+		PalaGamaMedia pgm = new PalaGamaMedia();
 		pgm.generarCodigo();
 		return pgm;
 }

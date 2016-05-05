@@ -5,6 +5,12 @@ public class Empleado {
 	String dni;
 	String nombre;
 	int sueldo = 1000;
+
+	public Empleado(String dni, String nombre, int sueldo) {
+		this.dni = dni;
+		this.nombre = nombre;
+		this.sueldo = sueldo;
+	}
 	
 	public String getDni() {
 		return dni;

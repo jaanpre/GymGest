@@ -26,10 +26,6 @@ public class Cliente {
 		asisCliente.add(asis);
 	}
 
-
-
-
-
 	public String getDni() {
 		return dni;
 	}

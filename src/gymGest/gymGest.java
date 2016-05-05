@@ -1,7 +1,12 @@
-﻿package gymGest;
+package gymGest;
 
+
+import java.time.DayOfWeek;
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import fabricas.fabricaPalaGamaAlta;
@@ -14,7 +19,9 @@ import interfaces.palaPadel;
 public class GymGest {
 	private List<Cliente> clientes;
 	private List<Empleado> empleados;
-	
+	// Caso de Uso: Mostrar lista de actividades
+	private static List<Clase> actividades;
+
 	//singleton
 	private static GymGest INSTANCE = new GymGest();
 	
@@ -27,7 +34,10 @@ public class GymGest {
 	public GymGest(){
 		this.clientes = new ArrayList<Cliente>();
 		this.empleados = new ArrayList<Empleado>();
+		this.actividades = new ArrayList<Clase>();
 	}
+
+	//Gestión de Listas
 
 	public boolean addCliente(Cliente cliente){
 		return clientes.add(cliente);
@@ -77,6 +87,30 @@ public class GymGest {
 		}
 		return null;
 	}
+
+	public boolean addActividad(Clase clase) { return actividades.add(clase);}
+
+	public boolean borrar_actividad(Clase clase) { return actividades.remove(clase);}
+
+	public List<Clase> getActividades(){ return actividades; }
+
+	public Clase getClase (DayOfWeek dw, LocalTime lt ){
+		for (Clase clase : this.actividades) {
+			if (clase.getDw1().equals(dw) && clase.getHora().equals(lt)){
+				return clase;
+			}
+		}
+		return null;
+	}
+
+	public void muestraClases(){
+
+		for (Clase clase : this.actividades) {
+			System.out.println(clase.getDw1()+" y "+clase.getDw2()+" clase de "+ clase.gettC() +
+					" Hora: " + clase.getHora() + " Duración " + clase.getDuracion() + " Monitor "+clase.getMonitor().getNombre());
+		}
+
+	}
 	
 	public void palaCliente(Cliente cli, String gama){
 		
@@ -102,38 +136,41 @@ public class GymGest {
 	
 	
 	public static void main(String args[]){
-		
+
 		Cliente cli = new Cliente();
 		cli.setDni("29209777");
 		cli.setNombre("Nacho");
-		
+
 		Cliente cli2 = new Cliente();
 		cli.setDni("29209778");
 		cli.setNombre("Jav");
-		
+
 		GymGest gg = new GymGest();
 		gg.clientes.add(cli);
 		gg.clientes.add(cli2);
-		
+
 		gg.palaCliente(cli, "niño");
 		gg.palaCliente(cli2, "alta");
-		
+
 		cli.getPa();
 		cli2.getPa();
 
+		// Prueba: Añadir una entrada y una salida a un cliente determinado
+
 		LocalDateTime now = LocalDateTime.now();
-		LocalDateTime later = (LocalDateTime.now()).withYear(2017);
+		LocalDateTime later = (LocalDateTime.now()).withYear(2018);
 		Entrada e = new Entrada(now);
 		Salida s = new Salida(later);
 		Asistencia asis = new Asistencia(e,s);
 		cli.addAsisCliente(asis);
 
-
-		
-		
-		
-		
-		
+		// Prueba añadir un par de clase y listar las clases
+		Monitor nacho = new Monitor("200333444","Nacho",4500);
+		Clase padel1 = new Clase(DayOfWeek.MONDAY , DayOfWeek.WEDNESDAY, Clase.tipoClase.PADEL, LocalTime.of(10,00) , 60, nacho);
+		Clase padel2 = new Clase(DayOfWeek.TUESDAY , DayOfWeek.THURSDAY, Clase.tipoClase.PADEL, LocalTime.of(11,00) , 60, nacho);
+		actividades.add(padel1);
+		actividades.add(padel2);
+		gg.muestraClases();
 	}
 
 }
