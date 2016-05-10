@@ -3,10 +3,10 @@ package fabricas;
 
 import gymGest.PalaGamaAlta;
 import gymGest.PalaNinyo;
-import interfaces.palaDePadel;
+import interfaces.fabricaAbstractaPalaDePadel;
 import interfaces.palaPadel;
 
-public class fabricaPalaNinyo implements palaDePadel{
+public class fabricaPalaNinyo implements fabricaAbstractaPalaDePadel {
 	
 	@Override
 	public palaPadel crearPala() {

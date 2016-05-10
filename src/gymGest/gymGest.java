@@ -9,11 +9,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import fabricas.fabricaPalaGamaAlta;
-import fabricas.fabricaPalaGamaBaja;
-import fabricas.fabricaPalaGamaMedia;
-import fabricas.fabricaPalaNinyo;
-import fabricas.fabricaPalas;
+import fabricas.*;
+//import fabricas.fabricaPalas;
 import interfaces.palaPadel;
 
 public class GymGest {
@@ -28,10 +25,7 @@ public class GymGest {
 	private static GymGest INSTANCE = new GymGest();
 	
 	//Para systemload...
-	fabricaPalaGamaBaja fpgb = new fabricaPalaGamaBaja();
-	fabricaPalaGamaMedia fpgm = new fabricaPalaGamaMedia();
-	fabricaPalaGamaAlta fpga = new fabricaPalaGamaAlta();
-	fabricaPalaNinyo fpn = new fabricaPalaNinyo();	
+
 
 	public GymGest(){
 		this.clientes = new ArrayList<Cliente>();
@@ -128,26 +122,41 @@ public class GymGest {
 		return aPorCli;
 	}
 	
-	public void palaCliente(Cliente cli, String gama){
-		
+//	public void palaCliente(Cliente cli, String gama){
+//
+//		switch(gama){
+//		case "baja":
+//		palaPadel pb = fabricaPalas.crearFabricaPalas(fpgb);
+//		cli.setPa(pb);
+//		break;
+//		case "media":
+//		palaPadel pm = fabricaPalas.crearFabricaPalas(fpgm);
+//		cli.setPa(pm);
+//		break;
+//		case "alta":
+//		palaPadel pa = fabricaPalas.crearFabricaPalas(fpga);
+//		cli.setPa(pa);
+//		break;
+//		case "niño":
+//		palaPadel pn = fabricaPalas.crearFabricaPalas(fpn);
+//		cli.setPa(pn);
+//		break;
+//		}
+//	}
+
+	public palaPadel crearPala (String gama){
+
 		switch(gama){
 		case "baja":
-		palaPadel pb = fabricaPalas.crearFabricaPalas(fpgb);
-		cli.setPa(pb);
-		break;
+			 return factoryProducer.getFactory("baja").crearPala();
 		case "media":
-		palaPadel pm = fabricaPalas.crearFabricaPalas(fpgm);
-		cli.setPa(pm);
-		break;
+			return factoryProducer.getFactory("media").crearPala();
 		case "alta":
-		palaPadel pa = fabricaPalas.crearFabricaPalas(fpga);
-		cli.setPa(pa);
-		break;
-		case "niño":
-		palaPadel pn = fabricaPalas.crearFabricaPalas(fpn);
-		cli.setPa(pn);
-		break;
+			return factoryProducer.getFactory("alta").crearPala();
+		case "ninyo":
+			return factoryProducer.getFactory("ninyo").crearPala();
 		}
+		return null;
 	}
 
 	public void apuntarActividad(Clase cla, Cliente cli){
@@ -184,42 +193,44 @@ public class GymGest {
 	
 	public static void main(String args[]){
 
-		Cliente cli = new Cliente("777","Nacho", "gcivil", "664", null);
-		Cliente cli2 = new Cliente("777","Pep", "gcivil", "664", null);
-
+//		Cliente cli = new Cliente("777","Nacho", "gcivil", "664", null);
+//		Cliente cli2 = new Cliente("777","Pep", "gcivil", "664", null);
+//
 		GymGest gg = new GymGest();
-		gg.clientes.add(cli);
-		gg.clientes.add(cli2);
+//		gg.clientes.add(cli);
+//		gg.clientes.add(cli2);
+//
+////		gg.palaCliente(cli, "niño");
+////		gg.palaCliente(cli2, "alta");
+//
+//
+//
+//		cli.getPa();
+//		cli2.getPa();
+//
+//		// Prueba: Añadir una entrada y una salida a un cliente determinado
+//
+//		LocalDateTime now = LocalDateTime.now();
+//		LocalDateTime later = (LocalDateTime.now()).withYear(2018);
+//		Entrada e = new Entrada(now);
+//		Salida s = new Salida(later);
+//		Asistencia asis = new Asistencia(e, s, cli);
+//		cli.addAsisCliente(asis);
+//
+//		// Prueba añadir un par de clase y listar las clases
+//		Monitor nacho = new Monitor("200333444","Nacho",4500);
+//		Clase padel1 = new Clase(DayOfWeek.MONDAY , DayOfWeek.WEDNESDAY, Clase.tipoClase.PADEL, LocalTime.of(10,00) , 60, nacho);
+//		Clase padel2 = new Clase(DayOfWeek.TUESDAY , DayOfWeek.THURSDAY, Clase.tipoClase.PADEL, LocalTime.of(11,00) , 60, nacho);
+//		actividades.add(padel1);
+//		actividades.add(padel2);
+//		//gg.muestraClases();
+//
+//		// Alumno participa en actividad
+//		//gg.apuntarActividad(padel1, cli2);
+//
+//		gg.mostrarAsistenciasCliente(cli);
 
-		gg.palaCliente(cli, "niño");
-		gg.palaCliente(cli2, "alta");
-
-		cli.getPa();
-		cli2.getPa();
-
-		// Prueba: Añadir una entrada y una salida a un cliente determinado
-
-		LocalDateTime now = LocalDateTime.now();
-		LocalDateTime later = (LocalDateTime.now()).withYear(2018);
-		Entrada e = new Entrada(now);
-		Salida s = new Salida(later);
-		Asistencia asis = new Asistencia(e, s, cli);
-		cli.addAsisCliente(asis);
-
-		// Prueba añadir un par de clase y listar las clases
-		Monitor nacho = new Monitor("200333444","Nacho",4500);
-		Clase padel1 = new Clase(DayOfWeek.MONDAY , DayOfWeek.WEDNESDAY, Clase.tipoClase.PADEL, LocalTime.of(10,00) , 60, nacho);
-		Clase padel2 = new Clase(DayOfWeek.TUESDAY , DayOfWeek.THURSDAY, Clase.tipoClase.PADEL, LocalTime.of(11,00) , 60, nacho);
-		actividades.add(padel1);
-		actividades.add(padel2);
-		//gg.muestraClases();
-
-		// Alumno participa en actividad
-		//gg.apuntarActividad(padel1, cli2);
-
-		gg.mostrarAsistenciasCliente(cli);
-
-
+		(gg.crearPala("media")).codigoDePala();
 
 	}
 

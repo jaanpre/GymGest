@@ -1,6 +1,6 @@
 package interfaces;
 
-public interface palaDePadel {
+public interface fabricaAbstractaPalaDePadel {
 
 	public palaPadel crearPala();
 	
