@@ -3,7 +3,9 @@ package gymGest;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Clase {
 
@@ -14,6 +16,10 @@ public class Clase {
 	private LocalTime hora;
 	private int duracion;
 	private Monitor monitor;
+	private int plazasLibres=PLAZAS;
+	private static final int PLAZAS = 8;
+
+	private List<Cliente> listaClienteActividad = new ArrayList<Cliente>();
 
 	public Clase(DayOfWeek dw1, DayOfWeek dw2, tipoClase tC, LocalTime hora, int duracion, Monitor monitor) {
 
@@ -23,8 +29,8 @@ public class Clase {
 		this.hora = hora;
 		this.duracion = duracion;
 		this.monitor = monitor;
-	}
 
+	}
 
 	public tipoClase gettC() {
 		return tC;
@@ -100,4 +106,32 @@ public class Clase {
 		this.monitor = monitor;
 	}
 
+	public int getPlazasLibres() {
+		return plazasLibres;
+	}
+
+	public void plazasLibres(){
+		System.out.println("Quedan " + getPlazasLibres() + " plazas libres en esta actividad");
+	}
+
+	public void setPlazasLibres(int plazasLibres) {
+		this.plazasLibres = plazasLibres;
+	}
+
+	public void addCliente(Cliente cli){
+		if(plazasLibres>0 && !listaClienteActividad.contains(cli)) {
+			plazasLibres--;
+			listaClienteActividad.add(cli);
+		} else if(plazasLibres>0){
+			System.out.println("El cliente ya está apuntado a esta actividad");
+		} else
+			System.out.println("No quedan plazas en este grupo");
+	}
+
+	public void removeCliente(Cliente cli){
+		if(listaClienteActividad.contains(cli)) {
+			plazasLibres++;
+			listaClienteActividad.remove(cli);
+		}
+	}
 }

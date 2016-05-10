@@ -1,45 +1,47 @@
 package gymGest;
 
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class Asistencia {
 
     Entrada entrada;
     Salida salida;
+    Cliente cli;
 
-    public Asistencia(Entrada e, Salida s){
+    public Asistencia(Entrada e, Salida s, Cliente cli) {
         this.entrada = e;
         this.salida = s;
+        this.cli = cli;
+
     }
 
     public Entrada getEntrada() {
         return entrada;
     }
 
-    public void setEntrada(Entrada entrada) {
+    public void setEntrada(LocalDateTime e) {
+
         this.entrada = entrada;
     }
 
     public Salida getSalida() {
+
         return salida;
     }
 
-    public void setSalida(Salida salida) {
+    public void setSalida(LocalDateTime s) {
+
         this.salida = salida;
     }
 
-    //    public List<Entrada> getListaEntradas() {
-//        return listaEntradas;
-//    }
-//
-//    public List<Salida> getListaSalida() {
-//        return listaSalida;
-//    }
-//
-//    public void addEntrada(Entrada e){listaEntradas.add(e);}
-//    public void deleteEntrada(Entrada e){listaEntradas.remove(e);}
-//    public void addSalida(Salida s){listaSalida.add(s);}
-//    public void deleteSalida(Salida s){listaSalida.remove(s);}
+    public Cliente getCli() {
+        return cli;
+    }
+
+    public void setCli(Cliente cli) {
+        this.cli = cli;
+    }
 
 }

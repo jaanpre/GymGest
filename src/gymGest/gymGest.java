@@ -21,6 +21,8 @@ public class GymGest {
 	private List<Empleado> empleados;
 	// Caso de Uso: Mostrar lista de actividades
 	private static List<Clase> actividades;
+	// Caso de Uso: Mostrar asistencia
+	private static List<Asistencia> asistencia;
 
 	//singleton
 	private static GymGest INSTANCE = new GymGest();
@@ -35,6 +37,7 @@ public class GymGest {
 		this.clientes = new ArrayList<Cliente>();
 		this.empleados = new ArrayList<Empleado>();
 		this.actividades = new ArrayList<Clase>();
+		this.asistencia = new ArrayList<Asistencia>();
 	}
 
 	//Gestión de Listas
@@ -111,6 +114,19 @@ public class GymGest {
 		}
 
 	}
+
+	public boolean addAsistencia(Asistencia asis){
+		return asistencia.add(asis);
+	}
+
+	// este método no sé si vale para algo, pero hace lo que dice el nombre
+	public String getAsistenciaPorCliente(Cliente cli){
+		String aPorCli="";
+		for(Asistencia aCli : asistencia){
+			if(aCli.getCli().equals(cli)) aPorCli+= aCli.getEntrada()+"";
+		}
+		return aPorCli;
+	}
 	
 	public void palaCliente(Cliente cli, String gama){
 		
@@ -133,17 +149,43 @@ public class GymGest {
 		break;
 		}
 	}
+
+	public void apuntarActividad(Clase cla, Cliente cli){
+		cla.addCliente(cli);
+		System.out.println("Quedan " + cla.getPlazasLibres() + " plazas libres ");
+	}
+
+	public String mostrarAsistenciasCliente(Cliente cli){
+		String muestra = "";
+		for (Asistencia asis : cli.getAsisCliente()){
+			 muestra += "Entrada "+(asis.getEntrada().getEntrada()).toString()+" Salida "+(asis.getSalida().getSalida()).toString();
+		}
+		System.out.println(muestra);
+		return muestra;
+	}
+
+	public void crearAsistencia(LocalDateTime e, LocalDateTime s, Cliente cli){
+		Entrada en;
+		Salida sa;
+		Asistencia asis = new Asistencia(en = new Entrada(e), sa = new Salida(s), cli);
+
+	}
+
+	public void crearCliente(String dni, String nombre, String direccion, String telefono, palaPadel pa){
+		Cliente cli = new Cliente(dni, nombre, direccion, telefono, pa);
+		addCliente(cli);
+	}
+
+	public void mostrarClientesAhora(){
+
+	}
+
 	
 	
 	public static void main(String args[]){
 
-		Cliente cli = new Cliente();
-		cli.setDni("29209777");
-		cli.setNombre("Nacho");
-
-		Cliente cli2 = new Cliente();
-		cli.setDni("29209778");
-		cli.setNombre("Jav");
+		Cliente cli = new Cliente("777","Nacho", "gcivil", "664", null);
+		Cliente cli2 = new Cliente("777","Pep", "gcivil", "664", null);
 
 		GymGest gg = new GymGest();
 		gg.clientes.add(cli);
@@ -161,7 +203,7 @@ public class GymGest {
 		LocalDateTime later = (LocalDateTime.now()).withYear(2018);
 		Entrada e = new Entrada(now);
 		Salida s = new Salida(later);
-		Asistencia asis = new Asistencia(e,s);
+		Asistencia asis = new Asistencia(e, s, cli);
 		cli.addAsisCliente(asis);
 
 		// Prueba añadir un par de clase y listar las clases
@@ -170,7 +212,18 @@ public class GymGest {
 		Clase padel2 = new Clase(DayOfWeek.TUESDAY , DayOfWeek.THURSDAY, Clase.tipoClase.PADEL, LocalTime.of(11,00) , 60, nacho);
 		actividades.add(padel1);
 		actividades.add(padel2);
-		gg.muestraClases();
+		//gg.muestraClases();
+
+		// Alumno participa en actividad
+		//gg.apuntarActividad(padel1, cli2);
+
+		gg.mostrarAsistenciasCliente(cli);
+
+
+
 	}
+
+
+
 
 }

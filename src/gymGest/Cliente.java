@@ -14,6 +14,14 @@ public class Cliente {
 	palaPadel pa;
 	public List<Asistencia>  asisCliente = new ArrayList<Asistencia>();
 
+	public Cliente(String dni, String nombre, String direccion, String telefono, palaPadel pa) {
+		this.dni = dni;
+		this.nombre = nombre;
+		this.direccion = direccion;
+		this.telefono = telefono;
+		this.pa = pa;
+	}
+
 	public List<Asistencia> getAsisCliente() {
 		return asisCliente;
 	}
@@ -23,6 +31,7 @@ public class Cliente {
 	}
 
 	public void addAsisCliente(Asistencia asis){
+
 		asisCliente.add(asis);
 	}
 
