@@ -1,5 +1,6 @@
 package gymGest;
 
+import java.time.Instant;
 import java.util.List;
 
 public class Instalacion {
@@ -7,6 +8,8 @@ public class Instalacion {
 	private String nombre;
 	private List<Monitor> monitoresDeInstalacion;
 	private double precioAlquiler;
+
+	public Instalacion(){};
 
 	public Instalacion(String nombre, List<Monitor> monitoresDeInstalacion, double precioAlquiler){
 		this.nombre=nombre;
