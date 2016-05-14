@@ -20,6 +20,7 @@ public class GymGest {
 	private static List<Clase> actividades;
 	// Caso de Uso: Mostrar asistencia
 	private static List<Asistencia> asistencia;
+	private Gimnasio gim;
 
 	//singleton
 	private static GymGest INSTANCE = new GymGest();
@@ -32,6 +33,7 @@ public class GymGest {
 		this.empleados = new ArrayList<Empleado>();
 		this.actividades = new ArrayList<Clase>();
 		this.asistencia = new ArrayList<Asistencia>();
+		this.gim = new Gimnasio();
 	}
 
 	//Gestión de Listas

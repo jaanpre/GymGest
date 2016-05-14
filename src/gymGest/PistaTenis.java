@@ -5,15 +5,13 @@ import java.util.List;
 /**
  * Created by ignaciosantonjamolina on 11/5/16.
  */
-public class PistaTenis extends Instalacion implements interfaces.pistaDeporteRaqueta {
+public class PistaTenis extends Pista implements interfaces.pistaDeporteRaqueta {
 
-//    public PistaTenis(String nombre, List<Monitor> monitoresInstalacion, double precioAlquiler){
-//
-//        super(nombre, monitoresInstalacion, precioAlquiler);
-//
-//    }
+    public PistaTenis(int id, boolean luz){
 
-    public PistaTenis(){}
+        super(id, luz);
+
+    }
 
     @Override
     public void crearReserva() {

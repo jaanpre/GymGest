@@ -2,18 +2,12 @@ package gymGest;
 
 import java.util.List;
 
-public class PistaPadel extends Instalacion implements interfaces.pistaDeporteRaqueta  {
+public class PistaPadel extends Pista implements interfaces.pistaDeporteRaqueta  {
 
+	public PistaPadel(int id, boolean luz){
 
+		super(id, luz);
 
-//	public PistaPadel(String nombre, List<Monitor> monitoresInstalacion, double precioAlquiler){
-//
-//		super(nombre, monitoresInstalacion, precioAlquiler);
-//
-//	}
-
-	public PistaPadel(){
-		super();
 	}
 
 	@Override
@@ -22,4 +16,5 @@ public class PistaPadel extends Instalacion implements interfaces.pistaDeporteRa
 		System.out.println("Reserva en Pista de Padel creada");
 
 	}
+
 }
