@@ -1,46 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1795768e-7047-4ea5-8ac7-a300b26446e0" name="Default" comment="Implementando base de datos">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/persistencia/ClienteDAOImp.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/persistencia/ConnectionManager.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/excepciones/DAOException.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/persistencia/IClienteDAO.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/excepciones/LogicException.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/persistencia_dto/clienteDTO.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/data/gimGest.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/data/gimGest.script" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/data/gymGest.log" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/bin/gymGest/gymGest.class" afterPath="$PROJECT_DIR$/bin/gymGest/GymGest.class" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/bin/gymGest/palaGamaAlta.class" afterPath="$PROJECT_DIR$/bin/gymGest/PalaGamaAlta.class" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/bin/gymGest/palaGamaBaja.class" afterPath="$PROJECT_DIR$/bin/gymGest/PalaGamaBaja.class" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/bin/gymGest/palaGamaMedia.class" afterPath="$PROJECT_DIR$/bin/gymGest/PalaGamaMedia.class" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/bin/gymGest/palaNinyo.class" afterPath="$PROJECT_DIR$/bin/gymGest/PalaNinyo.class" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/bin/gymGest/pistaPadel.class" afterPath="$PROJECT_DIR$/bin/gymGest/PistaPadel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/gymGest/Administrativo.class" afterPath="$PROJECT_DIR$/bin/gymGest/Administrativo.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/gymGest/Asistencia.class" afterPath="$PROJECT_DIR$/bin/gymGest/Asistencia.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/gymGest/Clase$tipoClase.class" afterPath="$PROJECT_DIR$/bin/gymGest/Clase$tipoClase.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/gymGest/Clase.class" afterPath="$PROJECT_DIR$/bin/gymGest/Clase.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/gymGest/Cliente.class" afterPath="$PROJECT_DIR$/bin/gymGest/Cliente.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/gymGest/Empleado.class" afterPath="$PROJECT_DIR$/bin/gymGest/Empleado.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/gymGest/Entrada.class" afterPath="$PROJECT_DIR$/bin/gymGest/Entrada.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/gymGest/Gimnasio.class" afterPath="$PROJECT_DIR$/bin/gymGest/Gimnasio.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/gymGest/Instalacion.class" afterPath="$PROJECT_DIR$/bin/gymGest/Instalacion.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/gymGest/Material.class" afterPath="$PROJECT_DIR$/bin/gymGest/Material.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/gymGest/Monitor.class" afterPath="$PROJECT_DIR$/bin/gymGest/Monitor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/gymGest/Piscina.class" afterPath="$PROJECT_DIR$/bin/gymGest/Piscina.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/gymGest/Sala.class" afterPath="$PROJECT_DIR$/bin/gymGest/Sala.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/gymGest/Salida.class" afterPath="$PROJECT_DIR$/bin/gymGest/Salida.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/gymGest/Taquilla.class" afterPath="$PROJECT_DIR$/bin/gymGest/Taquilla.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/interfaces/fabricaAbstractaPalaDePadel.class" afterPath="$PROJECT_DIR$/bin/interfaces/fabricaAbstractaPalaDePadel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/fabricas/fabricaPalaGamaAlta.class" afterPath="$PROJECT_DIR$/bin/fabricas/fabricaPalaGamaAlta.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/fabricas/fabricaPalaGamaBaja.class" afterPath="$PROJECT_DIR$/bin/fabricas/fabricaPalaGamaBaja.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/fabricas/fabricaPalaGamaMedia.class" afterPath="$PROJECT_DIR$/bin/fabricas/fabricaPalaGamaMedia.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/fabricas/fabricaPalaNinyo.class" afterPath="$PROJECT_DIR$/bin/fabricas/fabricaPalaNinyo.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/fabricas/factoryProducer.class" afterPath="$PROJECT_DIR$/bin/fabricas/factoryProducer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/interfaces/palaPadel.class" afterPath="$PROJECT_DIR$/bin/interfaces/palaPadel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="1795768e-7047-4ea5-8ac7-a300b26446e0" name="Default" comment="Implementando base de datos" />
     <ignored path="GymGest.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/bin/" />
@@ -222,9 +183,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1520" />
-    <option name="y" value="-146" />
-    <option name="width" value="1431" />
+    <option name="y" value="23" />
+    <option name="width" value="1280" />
     <option name="height" value="773" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -622,7 +582,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1520" y="-146" width="1431" height="773" extended-state="0" />
+    <frame x="0" y="23" width="1280" height="773" extended-state="7" />
     <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -641,7 +601,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25413966" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28513733" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29301655" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="DB Execution Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
