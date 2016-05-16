@@ -5,9 +5,7 @@ import java.time.DayOfWeek;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 import fabricas.*;
 //import fabricas.fabricaPalas;
@@ -15,12 +13,11 @@ import interfaces.palaPadel;
 
 public class GymGest {
 	private List<Cliente> clientes;
-	private List<Empleado> empleados;
-	// Caso de Uso: Mostrar lista de actividades
-	private static List<Clase> actividades;
-	// Caso de Uso: Mostrar asistencia
+	private List<Monitor> monitores;
+	private static List<Clase> clases;
 	private static List<Asistencia> asistencia;
-	private Gimnasio gim;
+	private static List<Reserva> reservas;
+	private static Gimnasio gim;
 
 	//singleton
 	private static GymGest INSTANCE = new GymGest();
@@ -30,30 +27,27 @@ public class GymGest {
 
 	public GymGest(){
 		this.clientes = new ArrayList<Cliente>();
-		this.empleados = new ArrayList<Empleado>();
-		this.actividades = new ArrayList<Clase>();
+		this.monitores = new ArrayList<Monitor>();
+		this.clases = new ArrayList<Clase>();
 		this.asistencia = new ArrayList<Asistencia>();
+		this.reservas = new ArrayList<Reserva>();
 		this.gim = new Gimnasio();
 	}
 
-	//Gestión de Listas
+	//List clientes
 
 	public boolean addCliente(Cliente cliente){
 		return clientes.add(cliente);
 	}
-
 	public boolean borrar_cliente(Cliente client) {
 		return clientes.remove(client);
 	}
-
 	public List<Cliente> getClientes() {
 		return clientes;
 	}
-
 	public void setClientes(List<Cliente> clientes) {
 		this.clientes = clientes;
 	}
-
 	public Cliente getCliente(String dni) {
 		for (Cliente cliente : this.clientes) {
 			if (cliente.getDni().equals(dni)) {
@@ -62,24 +56,25 @@ public class GymGest {
 		}
 		return null;
 	}
-	public boolean addEmpleado(Empleado empleado){
-		return empleados.add(empleado);
+	public void crearCliente(String dni, String nombre, String direccion, String telefono, palaPadel pa){
+		Cliente cli = new Cliente(dni, nombre, direccion, telefono, pa);
+		addCliente(cli);
 	}
 
-	public boolean borrar_empleado(Empleado empleado) {
-		return empleados.remove(empleado);
-	}
+	//List monitores
 
-	public List<Empleado> getEmpleados() {
-		return empleados;
+	public boolean addMonitor(Monitor monitor){
+		return monitores.add(monitor);
 	}
-
+	public boolean removeMonitor(Monitor monitor) {return monitores.remove(monitor);}
+	public List<Monitor> getEmpleados() {
+		return monitores;
+	}
 	public void setEmpleados(List<Empleado> empleados) {
-		this.empleados = empleados;
+		this.monitores = monitores;
 	}
-
 	public Empleado getEmpleado(String dni) {
-		for (Empleado empleado : this.empleados) {
+		for (Empleado empleado : this.monitores) {
 			if (empleado.getDni().equals(dni)) {
 				return empleado;
 			}
@@ -87,14 +82,12 @@ public class GymGest {
 		return null;
 	}
 
-	public boolean addActividad(Clase clase) { return actividades.add(clase);}
-
-	public boolean borrar_actividad(Clase clase) { return actividades.remove(clase);}
-
-	public List<Clase> getActividades(){ return actividades; }
-
+	//List Clases
+	public boolean addActividad(Clase clase) { return clases.add(clase);}
+	public boolean removeClase(Clase clase) { return clases.remove(clase);}
+	public List<Clase> getClases(){ return clases; }
 	public Clase getClase (DayOfWeek dw, LocalTime lt ){
-		for (Clase clase : this.actividades) {
+		for (Clase clase : this.clases) {
 			if (clase.getDw1().equals(dw) && clase.getHora().equals(lt)){
 				return clase;
 			}
@@ -103,14 +96,20 @@ public class GymGest {
 	}
 
 	public void muestraClases(){
-
-		for (Clase clase : this.actividades) {
+		for (Clase clase : this.clases) {
 			System.out.println(clase.getDw1()+" y "+clase.getDw2()+" clase de "+ clase.gettC() +
 					" Hora: " + clase.getHora() + " Duración " + clase.getDuracion() + " Monitor "+clase.getMonitor().getNombre());
 		}
 
 	}
 
+
+
+
+
+
+
+	//List Asistencia
 	public boolean addAsistencia(Asistencia asis){
 		return asistencia.add(asis);
 	}
@@ -123,28 +122,37 @@ public class GymGest {
 		}
 		return aPorCli;
 	}
-	
-//	public void palaCliente(Cliente cli, String gama){
-//
-//		switch(gama){
-//		case "baja":
-//		palaPadel pb = fabricaPalas.crearFabricaPalas(fpgb);
-//		cli.setPa(pb);
-//		break;
-//		case "media":
-//		palaPadel pm = fabricaPalas.crearFabricaPalas(fpgm);
-//		cli.setPa(pm);
-//		break;
-//		case "alta":
-//		palaPadel pa = fabricaPalas.crearFabricaPalas(fpga);
-//		cli.setPa(pa);
-//		break;
-//		case "niño":
-//		palaPadel pn = fabricaPalas.crearFabricaPalas(fpn);
-//		cli.setPa(pn);
-//		break;
-//		}
-//	}
+
+	public String mostrarAsistenciasCliente(Cliente cli){
+		String muestra = "";
+		for (Asistencia asis : cli.getAsisCliente()){
+			muestra += "Entrada "+(asis.getEntrada().getEntrada()).toString()+" Salida "+(asis.getSalida().getSalida()).toString();
+		}
+		System.out.println(muestra);
+		return muestra;
+	}
+
+	// List Reserva
+
+	public static List<Reserva> getReservas(){
+		return reservas;
+	}
+	public static void addReserva(Reserva res){
+		reservas.add(res);
+	}
+
+	//
+
+	public static Gimnasio getGim() {
+		return gim;
+	}
+
+	public static void setGim(Gimnasio gim) {
+		GymGest.gim = gim;
+	}
+
+
+	// CU: Alquiler
 
 	public palaPadel crearPala (String gama){
 
@@ -161,19 +169,16 @@ public class GymGest {
 		return null;
 	}
 
-	public void apuntarActividad(Clase cla, Cliente cli){
+
+
+
+
+	public void apuntarclase(Clase cla, Cliente cli){
 		cla.addCliente(cli);
 		System.out.println("Quedan " + cla.getPlazasLibres() + " plazas libres ");
 	}
 
-	public String mostrarAsistenciasCliente(Cliente cli){
-		String muestra = "";
-		for (Asistencia asis : cli.getAsisCliente()){
-			 muestra += "Entrada "+(asis.getEntrada().getEntrada()).toString()+" Salida "+(asis.getSalida().getSalida()).toString();
-		}
-		System.out.println(muestra);
-		return muestra;
-	}
+
 
 	public void crearAsistencia(LocalDateTime e, LocalDateTime s, Cliente cli){
 		Entrada en;
@@ -182,14 +187,9 @@ public class GymGest {
 
 	}
 
-	public void crearCliente(String dni, String nombre, String direccion, String telefono, palaPadel pa){
-		Cliente cli = new Cliente(dni, nombre, direccion, telefono, pa);
-		addCliente(cli);
-	}
 
-	public void mostrarClientesAhora(){
 
-	}
+
 
 	
 	
@@ -223,12 +223,12 @@ public class GymGest {
 //		Monitor nacho = new Monitor("200333444","Nacho",4500);
 //		Clase padel1 = new Clase(DayOfWeek.MONDAY , DayOfWeek.WEDNESDAY, Clase.tipoClase.PADEL, LocalTime.of(10,00) , 60, nacho);
 //		Clase padel2 = new Clase(DayOfWeek.TUESDAY , DayOfWeek.THURSDAY, Clase.tipoClase.PADEL, LocalTime.of(11,00) , 60, nacho);
-//		actividades.add(padel1);
-//		actividades.add(padel2);
+//		clases.add(padel1);
+//		clases.add(padel2);
 //		//gg.muestraClases();
 //
-//		// Alumno participa en actividad
-//		//gg.apuntarActividad(padel1, cli2);
+//		// Alumno participa en clase
+//		//gg.apuntarclase(padel1, cli2);
 //
 //		gg.mostrarAsistenciasCliente(cli);
 

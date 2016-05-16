@@ -5,6 +5,7 @@ public class Monitor extends Empleado{
 	boolean monitorNatacion;
 	boolean monitorPadel;
 	boolean monitorSala;
+	Gimnasio moniGim;
 
 	public Monitor(String dni, String nombre, int sueldo) {
 		super(dni, nombre, sueldo);

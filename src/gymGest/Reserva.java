@@ -14,26 +14,72 @@ public class Reserva {
     int dia;
     int hora;
     int minutos;
+    Cliente cli;
+    String pista;
 
-    private List<Reserva> listaDeReservas = new ArrayList<Reserva>();
-
-    // listadeReservas que se añaden si está libre
-
-    public Reserva(int año, Month mes, int dia, int hora, int minutos) {
+    public Reserva(int año, Month mes, int dia, int hora, int minutos, String pista, Cliente cli) {
         this.año = año;
         this.mes = mes;
         this.dia = dia;
         this.hora = hora;
         this.minutos = minutos;
+        this.pista = pista;
+        this.cli=cli;
     }
 
-    public void reservar(Reserva r){
-        for(Reserva re : listaDeReservas){
-            if(r.año == re.año && r.mes.equals(re.mes) && r.dia==re.dia && r.hora==re.hora && r.minutos==re.minutos) {
-                listaDeReservas.add(r);
-            }else{
-                System.out.println("La pista está ocupada en ese horario");
-            }
-        }
+    public int getAño() {
+        return año;
+    }
+
+    public void setAño(int año) {
+        this.año = año;
+    }
+
+    public Month getMes() {
+        return mes;
+    }
+
+    public void setMes(Month mes) {
+        this.mes = mes;
+    }
+
+    public int getDia() {
+        return dia;
+    }
+
+    public void setDia(int dia) {
+        this.dia = dia;
+    }
+
+    public int getHora() {
+        return hora;
+    }
+
+    public void setHora(int hora) {
+        this.hora = hora;
+    }
+
+    public int getMinutos() {
+        return minutos;
+    }
+
+    public void setMinutos(int minutos) {
+        this.minutos = minutos;
+    }
+
+    public Cliente getCli() {
+        return cli;
+    }
+
+    public void setCli(Cliente cli) {
+        this.cli = cli;
+    }
+
+    public String getPista() {
+        return pista;
+    }
+
+    public void setPista(String pista) {
+        this.pista = pista;
     }
 }

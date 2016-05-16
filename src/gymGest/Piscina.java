@@ -2,12 +2,12 @@ package gymGest;
 
 import java.util.List;
 
-public class Piscina extends Instalacion{
+public class Piscina {
 	
 	private int longitud; 
 
 	public Piscina(String nombre, List<Monitor> monitoresInstalacion, double precioAlquiler, int longitud){
-		super(nombre, monitoresInstalacion, precioAlquiler);
+		//super(nombre, monitoresInstalacion, precioAlquiler);
 		this.longitud=longitud;
 	}
 
