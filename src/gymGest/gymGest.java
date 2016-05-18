@@ -8,17 +8,19 @@ import java.time.LocalTime;
 import java.util.*;
 
 import fabricas.*;
+import gymGest.Clase.tipoClase;
 //import fabricas.fabricaPalas;
 import interfaces.palaPadel;
 import persistencia.ClienteDAOImp;
 import persistencia.DAL;
+import persistencia_dto.ClaseDTO;
 import persistencia_dto.ClienteDTO;
 
 public class GymGest {
 	private List<Cliente> clientes;
 	private List<Monitor> monitores;
-	private static List<Clase> clases;
-	private static List<Asistencia> asistencia;
+	private List<Clase> clases;
+	private List<Asistencia> asistencia;
 	private static List<Reserva> reservas;
 	private static Gimnasio gim;
 	private static DAL dal;
@@ -37,6 +39,7 @@ public class GymGest {
 		this.reservas = new ArrayList<Reserva>();
 		this.gim = new Gimnasio();
 		dal = DAL.getDal();
+		systemLoad();
 	}
 
 	public DAL getDal() {
@@ -45,7 +48,22 @@ public class GymGest {
 	public void setDal(DAL dal) {
 		this.dal = dal;
 	}
-	//List clientes
+	
+	// Control class code
+    private void systemLoad(){
+    	loadMonitores();
+    	loadClientes();
+    	loadClases();
+    	
+    }
+    
+	
+    
+    
+    
+    
+    
+    //List clientes
 
 	public boolean addCliente(Cliente cliente){
 		return clientes.add(cliente);
@@ -67,6 +85,7 @@ public class GymGest {
 		}
 		return null;
 	}
+	// Refactoring: crear constructor en ClienteDTO donde se le pase Cliente
 	public void crearCliente(String dni, String nombre, String direccion, String telefono, palaPadel pa,
 							 boolean material, boolean mañanas, int miembros){
 		Cliente cli;
@@ -77,12 +96,40 @@ public class GymGest {
 			cli = new ClienteTotal(dni, nombre, direccion, telefono, pa, material);
 		} else {cli = new ClienteFamilia(dni, nombre, direccion, telefono, pa, material, miembros);}
 
+		ClienteDTO clienteDTO = new ClienteDTO(dni, nombre, direccion, telefono, pa, material);
+		dal.crearCliente(clienteDTO);
 		addCliente(cli);
+		
+	}	
+
+	private void loadClientes(){
+		List<ClienteDTO> listaClienteDTO = dal.getClientes();
+		Cliente cliente;
+		for(ClienteDTO cli: listaClienteDTO){
+			cliente = new ClienteTotal(cli.getDni(), cli.getNombre(), cli.getDireccion(), cli.getTelefono(), cli.getPa(), cli.isMaterial());
+			addCliente(cliente);
+		}
 	}
 
-
+	private void mostrarClientes(){
+		for(Cliente cli: clientes){
+			System.out.println("Nombre: "+cli.nombre+" Dirección"+cli.direccion+" \n");
+		}
+	}
+	
+	
+	
+	
+	
 	//List monitores
 
+	public loadMonitores(){
+		
+	}
+	
+	crearMonitor
+	listarmonitores
+	
 	public boolean addMonitor(Monitor monitor){
 		return monitores.add(monitor);
 	}
@@ -101,11 +148,25 @@ public class GymGest {
 		}
 		return null;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	//List Clases
-	public boolean addActividad(Clase clase) { return clases.add(clase);}
+	public boolean addClase(Clase clase) { return clases.add(clase);}
+	
 	public boolean removeClase(Clase clase) { return clases.remove(clase);}
+	
 	public List<Clase> getClases(){ return clases; }
+	
 	public Clase getClase (DayOfWeek dw, LocalTime lt ){
 		for (Clase clase : this.clases) {
 			if (clase.getDw1().equals(dw) && clase.getHora().equals(lt)){
@@ -115,15 +176,43 @@ public class GymGest {
 		return null;
 	}
 
-	public void muestraClases(){
+	private void loadClases(){
+		List<ClaseDTO> listaClaseDTO = dal.getClases();
+		Clase clase;
+		for(ClaseDTO cla: listaClaseDTO){
+			clase = new Clase(cla.getDw1(), cla.getDw2(), cla.gettC(), cla.getHora(), cla.getDuracion(), (Monitor)null);
+			addClase(clase);
+		}
+		
+	}
+	
+	public void crearClase(int id, DayOfWeek dw1, DayOfWeek dw2, tipoClase tC, LocalTime hora, int duracion, int monitor){
+			Clase clas = new Clase(dw1, dw2, tC, hora, duracion, (Monitor)(Object)monitor); // GUARRADA
+			ClaseDTO cla = new ClaseDTO(id, clas);
+			
+			dal.crearClase(cla);
+			addClase(clas);
+	}		
+	
+	public void mostrarClases(){
 		for (Clase clase : this.clases) {
-			System.out.println(clase.getDw1()+" y "+clase.getDw2()+" clase de "+ clase.gettC() +
-					" Hora: " + clase.getHora() + " Duración " + clase.getDuracion() + " Monitor "+clase.getMonitor().getNombre());
+			System.out.println(clase.getDw1().toString()+" y "+clase.getDw2().toString()+" clase de "+ clase.gettC().toString()
+			+" Hora: " + clase.getHora().toString() + " Duración "+ clase.getDuracion());
 		}
 
 	}
-
-
+	
+	
+	
+	
+		
+	
+	
+	
+	
+	
+	
+	
 
 
 
@@ -157,7 +246,7 @@ public class GymGest {
 	public static List<Reserva> getReservas(){
 		return reservas;
 	}
-	public static void addReserva(Reserva res){
+	public void addReserva(Reserva res){
 		reservas.add(res);
 	}
 
@@ -172,6 +261,15 @@ public class GymGest {
 	}
 
 
+	
+	
+	
+	
+	
+	
+	// CU: Alquiler
+	// CU: Alquiler
+	// CU: Alquiler
 	// CU: Alquiler
 
 	public palaPadel crearPala (String gama){
@@ -215,45 +313,12 @@ public class GymGest {
 	
 	public static void main(String args[]){
 
-//		Cliente cli = new Cliente("777","Nacho", "gcivil", "664", null);
-//		Cliente cli2 = new Cliente("777","Pep", "gcivil", "664", null);
-//
 		GymGest gg = new GymGest();
-//		gg.clientes.add(cli);
-//		gg.clientes.add(cli2);
-//
-////		gg.palaCliente(cli, "niño");
-////		gg.palaCliente(cli2, "alta");
-//
-//
-//
-//		cli.getPa();
-//		cli2.getPa();
-//
-//		// Prueba: Añadir una entrada y una salida a un cliente determinado
-//
-//		LocalDateTime now = LocalDateTime.now();
-//		LocalDateTime later = (LocalDateTime.now()).withYear(2018);
-//		Entrada e = new Entrada(now);
-//		Salida s = new Salida(later);
-//		Asistencia asis = new Asistencia(e, s, cli);
-//		cli.addAsisCliente(asis);
-//
-//		// Prueba añadir un par de clase y listar las clases
-//		Monitor nacho = new Monitor("200333444","Nacho",4500);
-//		Clase padel1 = new Clase(DayOfWeek.MONDAY , DayOfWeek.WEDNESDAY, Clase.tipoClase.PADEL, LocalTime.of(10,00) , 60, nacho);
-//		Clase padel2 = new Clase(DayOfWeek.TUESDAY , DayOfWeek.THURSDAY, Clase.tipoClase.PADEL, LocalTime.of(11,00) , 60, nacho);
-//		clases.add(padel1);
-//		clases.add(padel2);
-//		//gg.muestraClases();
-//
-//		// Alumno participa en clase
-//		//gg.apuntarclase(padel1, cli2);
-//
-//		gg.mostrarAsistenciasCliente(cli);
+gg.mostrarClientes();
+		Cliente clo;
+		gg.addCliente(clo = new ClienteTotal("a", "b", "c", "d", null, true));
+		gg.mostrarClientes();
 
-		//(gg.crearPala("media")).codigoDePala();
-		ClienteDTO cli = new ClienteDTO("676", "Ferran", "Trafalgar", "6645768", null, true);
-		dal.crearCliente(cli);
+		
 	}
 }

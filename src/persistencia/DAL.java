@@ -1,7 +1,11 @@
 package persistencia;
 
+import java.util.List;
+
 import excepciones.DAOException;
+import persistencia_dto.ClaseDTO;
 import persistencia_dto.ClienteDTO;
+import persistencia_dto.MonitorDTO;
 
 /**
  * Created by ignaciosantonjamolina on 13/5/16.
@@ -9,12 +13,16 @@ import persistencia_dto.ClienteDTO;
 public final class DAL {
 
     private IClienteDAO cliDAO;
+    private IClaseDAO claDAO;
+    private IMonitorDAO moDAO;
 
     private static DAL INSTANCE = new DAL();
 
     private DAL() {
         try {
             this.cliDAO = new ClienteDAOImp();
+            this.claDAO = new ClaseDAOImp();
+            this.moDAO = new MonitorDAOImp();
         } catch (DAOException e) {
             e.printStackTrace();
         }
@@ -30,6 +38,45 @@ public final class DAL {
             return true;
         }catch(DAOException e){ return false;}
     }
+    
+    public List<ClienteDTO> getClientes(){
+    	try{
+    		return cliDAO.getClientes();
+    	}catch (DAOException e){
+    		return null;
+    	}
+    }
+
+    public boolean crearClase(ClaseDTO claseDTO){
+    	 try{
+             claDAO.crearClase(claseDTO);
+             return true;
+         }catch(DAOException e){ return false;}
+    }
+    
+    public List<ClaseDTO> getClases(){
+    	try{
+    		return claDAO.getClases();
+    	}catch (DAOException e){
+    		return null;
+    	}
+    }
+   
+    public boolean crearMonitor(MonitorDTO monitorDTO){
+    	try{
+            moDAO.crearMonitor(monitorDTO);
+            return true;
+        }catch(DAOException e){ return false;}
+	}
+
+	public List<MonitorDTO> getMonitores(){
+		try{
+    		return moDAO.getMonitores();
+    	}catch (DAOException e){
+    		return null;
+    	}
+	}
+    
 
 
 }

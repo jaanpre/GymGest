@@ -1,5 +1,7 @@
 package persistencia;
 
+import java.util.List;
+
 import excepciones.DAOException;
 import persistencia_dto.ClienteDTO;
 
@@ -10,5 +12,6 @@ import persistencia_dto.ClienteDTO;
 public interface IClienteDAO {
 
     public void crearCliente(ClienteDTO cliente) throws DAOException;
+    public List<ClienteDTO> getClientes() throws DAOException;
 
 }

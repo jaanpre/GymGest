@@ -1,6 +1,7 @@
 package persistencia_dto;
 
 
+import gymGest.Cliente;
 import interfaces.palaPadel;
 
 /**
@@ -22,6 +23,16 @@ public class ClienteDTO{
         this.telefono = telefono;
         this.pa = pa;
         this.material = material;
+    }
+    
+    //Refactoring
+    public ClienteDTO(Cliente cliente){
+    	this.dni=cliente.getDni();
+    	this.nombre=cliente.getNombre();
+    	this.direccion=cliente.getDireccion();
+    	this.telefono=cliente.getTelefono();
+    	this.pa=cliente.getPa();
+    	this.material=cliente.isMaterial();
     }
 
     public String getNombre() {
