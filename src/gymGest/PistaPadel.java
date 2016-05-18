@@ -16,7 +16,7 @@ public class PistaPadel extends Pista implements interfaces.pistaDeporteRaqueta 
 	}
 
 	public void addReservaPadel(Reserva res){
-		reservaPadel.add(res)
+		reservaPadel.add(res);
 	}
 
 	@Override

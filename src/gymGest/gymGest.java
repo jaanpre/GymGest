@@ -10,6 +10,9 @@ import java.util.*;
 import fabricas.*;
 //import fabricas.fabricaPalas;
 import interfaces.palaPadel;
+import persistencia.ClienteDAOImp;
+import persistencia.DAL;
+import persistencia_dto.ClienteDTO;
 
 public class GymGest {
 	private List<Cliente> clientes;
@@ -18,6 +21,7 @@ public class GymGest {
 	private static List<Asistencia> asistencia;
 	private static List<Reserva> reservas;
 	private static Gimnasio gim;
+	private static DAL dal;
 
 	//singleton
 	private static GymGest INSTANCE = new GymGest();
@@ -32,8 +36,15 @@ public class GymGest {
 		this.asistencia = new ArrayList<Asistencia>();
 		this.reservas = new ArrayList<Reserva>();
 		this.gim = new Gimnasio();
+		dal = DAL.getDal();
 	}
 
+	public DAL getDal() {
+		return dal;
+	}
+	public void setDal(DAL dal) {
+		this.dal = dal;
+	}
 	//List clientes
 
 	public boolean addCliente(Cliente cliente){
@@ -56,10 +67,19 @@ public class GymGest {
 		}
 		return null;
 	}
-	public void crearCliente(String dni, String nombre, String direccion, String telefono, palaPadel pa){
-		Cliente cli = new Cliente(dni, nombre, direccion, telefono, pa);
+	public void crearCliente(String dni, String nombre, String direccion, String telefono, palaPadel pa,
+							 boolean material, boolean mañanas, int miembros){
+		Cliente cli;
+
+		if(miembros == 1 && mañanas){
+			cli = new ClienteMañanas(dni, nombre, direccion, telefono, pa, material);
+		} else if (miembros == 1 && !mañanas){
+			cli = new ClienteTotal(dni, nombre, direccion, telefono, pa, material);
+		} else {cli = new ClienteFamilia(dni, nombre, direccion, telefono, pa, material, miembros);}
+
 		addCliente(cli);
 	}
+
 
 	//List monitores
 
@@ -232,11 +252,8 @@ public class GymGest {
 //
 //		gg.mostrarAsistenciasCliente(cli);
 
-		(gg.crearPala("media")).codigoDePala();
-
+		//(gg.crearPala("media")).codigoDePala();
+		ClienteDTO cli = new ClienteDTO("676", "Ferran", "Trafalgar", "6645768", null, true);
+		dal.crearCliente(cli);
 	}
-
-
-
-
 }

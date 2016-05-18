@@ -4,22 +4,24 @@ import interfaces.palaPadel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cliente {
+public abstract class Cliente {
 	
 	String dni;
 	String nombre;
 	String direccion;
 	String telefono;
 	palaPadel pa;
+	boolean material;
 	public List<Asistencia>  asisCliente = new ArrayList<Asistencia>();
 	public List<Reserva> reservasPorCliente = new ArrayList<Reserva>();
 
-	public Cliente(String dni, String nombre, String direccion, String telefono, palaPadel pa) {
+	public Cliente(String dni, String nombre, String direccion, String telefono, palaPadel pa, boolean material) {
 		this.dni = dni;
 		this.nombre = nombre;
 		this.direccion = direccion;
 		this.telefono = telefono;
 		this.pa = pa;
+		this.material = material;
 	}
 
 	public List<Asistencia> getAsisCliente() {
@@ -107,5 +109,23 @@ public class Cliente {
 	public void setPa(palaPadel pa) {
 		this.pa = pa;
 	}
+
+	public boolean isMaterial() {
+		return material;
+	}
+
+	public void setMaterial(boolean material) {
+		this.material = material;
+	}
+	// Implementacion del Patron Plantilla
+
+	public final int cuotaMensual(){
+		int cuota = 0;
+		if(isMaterial()){return fijo()+alquilerMaterial();}
+		return fijo();
+	}
+
+	abstract int fijo();
+	abstract int alquilerMaterial();
 
 }
