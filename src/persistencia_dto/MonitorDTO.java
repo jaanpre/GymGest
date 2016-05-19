@@ -1,23 +1,32 @@
 package persistencia_dto;
 
 import gymGest.Gimnasio;
+import gymGest.Monitor;
 
 public class MonitorDTO {
 	
 	int id;
+	String dni;
 	String nombre;
-	int sueldo;
 	boolean monitorNatacion;
 	boolean monitorRaqueta;
 	boolean monitorSala;
-
-	public MonitorDTO(int id, String nombre, boolean monitorNatacion, boolean monitorRaqueta, boolean monitorSala) {
+	
+	public MonitorDTO(int id, String dni, String nombre, boolean monitorNatacion, boolean monitorRaqueta, boolean monitorSala) {
 		this.id=id; 
 		this.nombre=nombre;
 		this.monitorNatacion=monitorNatacion;
 		this.monitorRaqueta=monitorNatacion;
 		this.monitorSala=monitorSala;	
 	}
+	
+	public MonitorDTO(Monitor monitor){
+		this.id=monitor.getId();
+		this.nombre=monitor.getNombre();
+		this.monitorNatacion=monitor.isMonitorNatacion();
+		this.monitorRaqueta=monitor.isMonitorRaqueta();
+		this.monitorSala=monitor.isMonitorSala();
+	} 
 
 	public int getId() {
 		return id;
@@ -33,14 +42,6 @@ public class MonitorDTO {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-
-	public int getSueldo() {
-		return sueldo;
-	}
-
-	public void setSueldo(int sueldo) {
-		this.sueldo = sueldo;
 	}
 
 	public boolean isMonitorNatacion() {
@@ -65,6 +66,14 @@ public class MonitorDTO {
 
 	public void setMonitorSala(boolean monitorSala) {
 		this.monitorSala = monitorSala;
+	}
+
+	public String getDni() {
+		return dni;
+	}
+
+	public void setDni(String dni) {
+		this.dni = dni;
 	}
 	
 	

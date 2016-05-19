@@ -9,8 +9,8 @@ public class ClienteFamilia extends Cliente{
 
     int miembros;
 
-    ClienteFamilia(String dni, String nombre, String direccion, String telefono, palaPadel pa, boolean material, int miembros){
-        super(dni, nombre, direccion, telefono, pa, material);
+    ClienteFamilia(String dni, String nombre, String direccion, String telefono, String gama , boolean material, int miembros){
+        super(dni, nombre, direccion, telefono, gama, material);
         this.miembros=miembros;
     }
 

@@ -10,18 +10,22 @@ public abstract class Cliente {
 	String nombre;
 	String direccion;
 	String telefono;
+	String gama;
 	palaPadel pa;
 	boolean material;
+	int cuota;
+	Tienda tienda;
 	public List<Asistencia>  asisCliente = new ArrayList<Asistencia>();
 	public List<Reserva> reservasPorCliente = new ArrayList<Reserva>();
 
-	public Cliente(String dni, String nombre, String direccion, String telefono, palaPadel pa, boolean material) {
+	public Cliente(String dni, String nombre, String direccion, String telefono, String gama, boolean material) {
 		this.dni = dni;
 		this.nombre = nombre;
 		this.direccion = direccion;
 		this.telefono = telefono;
-		this.pa = pa;
 		this.material = material;
+		this.gama=gama;
+		this.cuota = cuotaMensual();
 	}
 
 	public List<Asistencia> getAsisCliente() {
@@ -103,6 +107,12 @@ public abstract class Cliente {
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
+	public String getGama() {
+		return gama;
+	}
+	public void setGama(String gama) {
+		this.gama = gama;
+	}
 	public palaPadel getPa() {
 		return pa;
 	}
@@ -127,5 +137,11 @@ public abstract class Cliente {
 
 	abstract int fijo();
 	abstract int alquilerMaterial();
+	
+	public void alquilarPala(String gama){
+		tienda = new Tienda();
+		palaPadel pa = tienda.alquilarPalaPadel(this, gama); 
+		this.setPa(pa);
+	}
 
 }

@@ -2,13 +2,18 @@ package gymGest;
 
 public class Monitor extends Empleado{
 	
+	int id;
 	boolean monitorNatacion;
-	boolean monitorPadel;
+	boolean monitorRaqueta;
 	boolean monitorSala;
 	Gimnasio moniGim;
 
-	public Monitor(String dni, String nombre, int sueldo) {
-		super(dni, nombre, sueldo);
+	public Monitor(int id, String dni, String nombre, boolean monitorNatacion, boolean monitorRaqueta, boolean monitorSala) {
+		super(dni, nombre);
+		this.id=id;
+		this.monitorNatacion=monitorNatacion;
+		this.monitorRaqueta=monitorRaqueta;
+		this.monitorSala=monitorSala;
 	}
 
 	public int getSueldo() {
@@ -23,12 +28,20 @@ public class Monitor extends Empleado{
 		this.monitorNatacion = monitorNatacion;
 	}
 
-	public boolean isMonitorPadel() {
-		return monitorPadel;
+	public int getId() {
+		return id;
 	}
 
-	public void setMonitorPadel(boolean monitorPadel) {
-		this.monitorPadel = monitorPadel;
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public boolean isMonitorRaqueta() {
+		return monitorRaqueta;
+	}
+
+	public void setMonitorRaqueta(boolean monitorRaqueta) {
+		this.monitorRaqueta = monitorRaqueta;
 	}
 
 	public boolean isMonitorSala() {

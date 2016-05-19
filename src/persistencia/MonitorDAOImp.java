@@ -52,6 +52,7 @@ public class MonitorDAOImp implements IMonitorDAO{
 
 					MonitorDTO MonitorDTO = new MonitorDTO(
 							rs.getInt("ID"),
+							null, 
 							rs.getString("NAME"),
 							rs.getBoolean("ISNATACION"),
 							rs.getBoolean("ISRAQUETA"),

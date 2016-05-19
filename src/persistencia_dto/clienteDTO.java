@@ -13,15 +13,15 @@ public class ClienteDTO{
     String nombre;
     String direccion;
     String telefono;
-    palaPadel pa;
+    String gama;
     boolean material;
 
-    public ClienteDTO(String dni, String nombre, String direccion, String telefono, palaPadel pa, boolean material) {
+    public ClienteDTO(String dni, String nombre, String direccion, String telefono, String gama, boolean material) {
         this.dni = dni;
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
-        this.pa = pa;
+        this.gama = gama;
         this.material = material;
     }
     
@@ -31,7 +31,7 @@ public class ClienteDTO{
     	this.nombre=cliente.getNombre();
     	this.direccion=cliente.getDireccion();
     	this.telefono=cliente.getTelefono();
-    	this.pa=cliente.getPa();
+    	this.gama=cliente.getGama();
     	this.material=cliente.isMaterial();
     }
 
@@ -67,12 +67,12 @@ public class ClienteDTO{
         this.telefono = telefono;
     }
 
-    public palaPadel getPa() {
-        return pa;
+    public String getGama() {
+        return gama;
     }
 
-    public void setPa(palaPadel pa) {
-        this.pa = pa;
+    public void setGama(String gama) {
+        this.gama = gama;
     }
 
     public boolean isMaterial() {

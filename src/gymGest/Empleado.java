@@ -6,7 +6,7 @@ public class Empleado {
 	String nombre;
 	int sueldo = 1000;
 
-	public Empleado(String dni, String nombre, int sueldo) {
+	public Empleado(String dni, String nombre) {
 		this.dni = dni;
 		this.nombre = nombre;
 		this.sueldo = sueldo;

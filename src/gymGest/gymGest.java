@@ -15,6 +15,7 @@ import persistencia.ClienteDAOImp;
 import persistencia.DAL;
 import persistencia_dto.ClaseDTO;
 import persistencia_dto.ClienteDTO;
+import persistencia_dto.MonitorDTO;
 
 public class GymGest {
 	private List<Cliente> clientes;
@@ -65,6 +66,41 @@ public class GymGest {
     
     //List clientes
 
+    private void loadClientes(){
+		List<ClienteDTO> listaClienteDTO = dal.getClientes();
+		Cliente cliente;
+		for(ClienteDTO cli: listaClienteDTO){
+			cliente = new ClienteTotal(cli.getDni(), cli.getNombre(), cli.getDireccion(), cli.getTelefono(), cli.getGama(), cli.isMaterial());
+			addCliente(cliente);
+		}
+	}
+	
+	// Refactoring: crear constructor en ClienteDTO donde se le pase Cliente
+	public void crearCliente(String dni, String nombre, String direccion, String telefono, String gama,
+							 boolean material, boolean mañanas, int miembros){
+		Cliente cli;
+
+		if(miembros == 1 && mañanas){
+			cli = new ClienteMañanas(dni, nombre, direccion, telefono, gama, material);
+		} else if (miembros == 1 && !mañanas){
+			cli = new ClienteTotal(dni, nombre, direccion, telefono, gama, material);
+		} else {cli = new ClienteFamilia(dni, nombre, direccion, telefono, gama, material, miembros);}
+
+		ClienteDTO clienteDTO = new ClienteDTO(dni, nombre, direccion, telefono, gama, material);
+		dal.crearCliente(clienteDTO);
+		addCliente(cli);
+		
+	}	
+
+	private void mostrarClientes(){
+		for(Cliente cli: clientes){
+			System.out.println("Nombre: "+cli.nombre+" Dirección"+cli.direccion+"  pala:"+cli.getPa() +"\n");
+		}
+	}
+	
+	
+    
+    
 	public boolean addCliente(Cliente cliente){
 		return clientes.add(cliente);
 	}
@@ -85,50 +121,34 @@ public class GymGest {
 		}
 		return null;
 	}
-	// Refactoring: crear constructor en ClienteDTO donde se le pase Cliente
-	public void crearCliente(String dni, String nombre, String direccion, String telefono, palaPadel pa,
-							 boolean material, boolean mañanas, int miembros){
-		Cliente cli;
-
-		if(miembros == 1 && mañanas){
-			cli = new ClienteMañanas(dni, nombre, direccion, telefono, pa, material);
-		} else if (miembros == 1 && !mañanas){
-			cli = new ClienteTotal(dni, nombre, direccion, telefono, pa, material);
-		} else {cli = new ClienteFamilia(dni, nombre, direccion, telefono, pa, material, miembros);}
-
-		ClienteDTO clienteDTO = new ClienteDTO(dni, nombre, direccion, telefono, pa, material);
-		dal.crearCliente(clienteDTO);
-		addCliente(cli);
-		
-	}	
-
-	private void loadClientes(){
-		List<ClienteDTO> listaClienteDTO = dal.getClientes();
-		Cliente cliente;
-		for(ClienteDTO cli: listaClienteDTO){
-			cliente = new ClienteTotal(cli.getDni(), cli.getNombre(), cli.getDireccion(), cli.getTelefono(), cli.getPa(), cli.isMaterial());
-			addCliente(cliente);
-		}
-	}
-
-	private void mostrarClientes(){
-		for(Cliente cli: clientes){
-			System.out.println("Nombre: "+cli.nombre+" Dirección"+cli.direccion+" \n");
-		}
-	}
 	
 	
 	
-	
+
 	
 	//List monitores
 
-	public loadMonitores(){
+	public void loadMonitores(){
+		List<MonitorDTO> listaMonitorDTO = dal.getMonitores();
+		Monitor monitor;
+		for (MonitorDTO mon: listaMonitorDTO){
+			monitor = new Monitor(mon.getId(), mon.getDni(), mon.getNombre(), mon.isMonitorNatacion(), mon.isMonitorRaqueta(), mon.isMonitorSala());
+			addMonitor(monitor);
+		}
+	}
 		
+	public void crearMonitor(int id, String dni, String nombre, boolean monitorNatacion, boolean monitorRaqueta, boolean monitorSala){
+		Monitor mon = new Monitor(id, dni, nombre, monitorNatacion, monitorRaqueta, monitorSala);
+		MonitorDTO monDTO = new MonitorDTO(mon);
+		addMonitor(mon);
+		dal.crearMonitor(monDTO);
 	}
 	
-	crearMonitor
-	listarmonitores
+	public void mostrarMonitores(){
+		for(Monitor mon: monitores){
+			System.out.println("Monitor" + mon.id + "  Nombre: "+ mon.nombre);
+		}
+	}
 	
 	public boolean addMonitor(Monitor monitor){
 		return monitores.add(monitor);
@@ -161,21 +181,6 @@ public class GymGest {
 	
 
 	//List Clases
-	public boolean addClase(Clase clase) { return clases.add(clase);}
-	
-	public boolean removeClase(Clase clase) { return clases.remove(clase);}
-	
-	public List<Clase> getClases(){ return clases; }
-	
-	public Clase getClase (DayOfWeek dw, LocalTime lt ){
-		for (Clase clase : this.clases) {
-			if (clase.getDw1().equals(dw) && clase.getHora().equals(lt)){
-				return clase;
-			}
-		}
-		return null;
-	}
-
 	private void loadClases(){
 		List<ClaseDTO> listaClaseDTO = dal.getClases();
 		Clase clase;
@@ -201,6 +206,23 @@ public class GymGest {
 		}
 
 	}
+	
+	public boolean addClase(Clase clase) { return clases.add(clase);}
+	
+	public boolean removeClase(Clase clase) { return clases.remove(clase);}
+	
+	public List<Clase> getClases(){ return clases; }
+	
+	public Clase getClase (DayOfWeek dw, LocalTime lt ){
+		for (Clase clase : this.clases) {
+			if (clase.getDw1().equals(dw) && clase.getHora().equals(lt)){
+				return clase;
+			}
+		}
+		return null;
+	}
+
+	
 	
 	
 	
@@ -241,6 +263,8 @@ public class GymGest {
 		return muestra;
 	}
 
+	
+	
 	// List Reserva
 
 	public static List<Reserva> getReservas(){
@@ -263,30 +287,17 @@ public class GymGest {
 
 	
 	
-	
-	
-	
-	
-	// CU: Alquiler
-	// CU: Alquiler
-	// CU: Alquiler
-	// CU: Alquiler
-
-	public palaPadel crearPala (String gama){
-
-		switch(gama){
-		case "baja":
-			 return factoryProducer.getFactory("baja").crearPala();
-		case "media":
-			return factoryProducer.getFactory("media").crearPala();
-		case "alta":
-			return factoryProducer.getFactory("alta").crearPala();
-		case "ninyo":
-			return factoryProducer.getFactory("ninyo").crearPala();
+	public void palaParaTodos(){
+		for(Cliente cli: clientes){
+			{cli.alquilarPala("media");}
+			
 		}
-		return null;
+		this.mostrarClientes();
 	}
-
+	
+	
+	
+	
 
 
 
@@ -314,10 +325,7 @@ public class GymGest {
 	public static void main(String args[]){
 
 		GymGest gg = new GymGest();
-gg.mostrarClientes();
-		Cliente clo;
-		gg.addCliente(clo = new ClienteTotal("a", "b", "c", "d", null, true));
-		gg.mostrarClientes();
+		gg.palaParaTodos();
 
 		
 	}

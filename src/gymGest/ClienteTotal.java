@@ -7,8 +7,8 @@ import interfaces.palaPadel;
  */
 public class ClienteTotal extends Cliente{
 
-    ClienteTotal(String dni, String nombre, String direccion, String telefono, palaPadel pa, boolean material){
-        super(dni, nombre, direccion, telefono, pa, material);
+    ClienteTotal(String dni, String nombre, String direccion, String telefono, String gama, boolean material){
+        super(dni, nombre, direccion, telefono, gama, material);
     }
 
     @Override
